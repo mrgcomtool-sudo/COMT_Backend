@@ -91,8 +91,8 @@ const addClient = async(req,res)=>{
         if(!name){
             return res.status(400).json({message:"Project title is required"});
         }
-        const customId = await generateCustomId();
-        const newClient = await Client.create({customId,name, email, phone,address,description});  
+        
+        const newClient = await Client.create({name, email, phone,address,description});  
         await Activity.create({
             type: 'CLIENT',
             action: 'added',

@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const phaseSchema = mongoose.Schema({
-    customId: {
+     typeId: {
     type: String,
-    unique: true,
+    
     },
     name:{
         type:String,

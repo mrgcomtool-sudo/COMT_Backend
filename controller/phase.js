@@ -21,9 +21,9 @@ const generateCustomId = async () => {
 // ✅ Create Phase
 const createPhase = async (req, res) => {
   try {
-    const {  name, description,startDate, endDate, status, projectId } = req.body;
-    const customId = await generateCustomId();
-    const newPhase = new Phase({customId, name, description,startDate, endDate, status,projectId});
+    const {typeId,name, description,startDate, endDate, status, projectId } = req.body;
+    
+    const newPhase = new Phase({typeId, name, description,startDate, endDate, status,projectId});
 
     const savedPhase = await newPhase.save();
     const project = await Project.findById(projectId);

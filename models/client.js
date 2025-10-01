@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 const clientSchema = mongoose.Schema({
-    customId:{
-        type:String,
-        required:true
-    },
+    
     name:{
         type:String,
     },

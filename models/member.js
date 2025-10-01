@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const memberSchema = mongoose.Schema({
-    customId:{
-        type:String,
-        required:true
-    },
     name:{
         type:String,
     },

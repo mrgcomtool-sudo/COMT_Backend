@@ -91,8 +91,8 @@ const addMember3 = async(req,res)=>{
         if(!name){
             return res.status(400).json({message:"Project title is required"});
         }
-        const customId = await generateCustomId();
-        const newMember = await Member.create({customId,name, personalEmail, dateOfBirth,phone,role,skills,address,maritalStatus});  
+        
+        const newMember = await Member.create({name, personalEmail, dateOfBirth,phone,role,skills,address,maritalStatus});  
         await Activity.create({
             type: 'MEMBER',
             action: 'joined',
@@ -109,7 +109,7 @@ const addMember3 = async(req,res)=>{
     
     }
 
-/*********Add New Project */
+/*********Add New member with image */
 const addMember2 = async(req,res)=>{
     try{
         const { name, personalEmail, dateOfBirth,phone,role,skills,address,maritalStatus}=req.body;

@@ -20,9 +20,9 @@ const generateCustomId = async () => {
 // ✅ Create Task
 const createTask = async (req, res) => {
   try {
-    const { name, description,startDate, endDate, status, budget,projectId, assignedTo, phaseId } = req.body;
-    const customId = await generateCustomId();
-    const newTask = new Task({ customId,  name, description,startDate, endDate, status, budget,projectId, assignedTo, phaseId });
+    const {typeId, name, description,startDate, endDate, status, budget,projectId, assignedTo, phaseId } = req.body;
+   
+    const newTask = new Task({ typeId,  name, description,startDate, endDate, status, budget,projectId, assignedTo, phaseId });
 
     const savedTask = await newTask.save();
     const phase = await Phase.findById(phaseId);
