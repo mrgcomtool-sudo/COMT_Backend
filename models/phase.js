@@ -24,7 +24,9 @@ const phaseSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    
+    budget:{
+        type:Number,  
+    },
     projectId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Project",

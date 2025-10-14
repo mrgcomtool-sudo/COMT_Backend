@@ -19,9 +19,12 @@ const generateCustomId = async () => {
 // ✅ Create Expense
 const createExpense = async (req, res) => {
   try {
-    const { projectId,phaseId,taskId,name,description,category,amount, paidTo,paymentDate,paymentMethod,transactionNo } = req.body;
+    const { projectId,phaseId,taskId,name,description,category,amount, paidTo,paymentDate,paymentMethod,transactionNo,workers,
+   salary, food, quantity, price,miscellaneous, unit } = req.body;
     const customId = await generateCustomId();
-    const newExpense = new Expense({ customId,projectId,phaseId,taskId,name,description,category,amount, paidTo,paymentDate,paymentMethod,transactionNo });
+    const newExpense = new Expense({ customId,projectId,phaseId,taskId,name,description,category,amount, paidTo,paymentDate,paymentMethod,transactionNo,
+      workers, salary, food, quantity, price,miscellaneous, unit
+     });
 
     const savedExpense = await newExpense.save();
     const task = await Task.findById(taskId);

@@ -10,7 +10,6 @@ const expenseSchema = mongoose.Schema({
             ref:"Project",
             required:true
         },
-       
         phaseId:{
             type: mongoose.Schema.Types.ObjectId,
             ref: "Phase",
@@ -48,7 +47,28 @@ const expenseSchema = mongoose.Schema({
         },
         transactionNo:{
             type:String
-        }
+        },
+        workers:{
+            type:Number
+        },
+        salary:{
+            type:Number
+        },
+        food:{
+            type:Number
+        },
+        quantity:{
+            type:Number
+        },
+        price:{
+            type:Number
+        },
+        miscellaneous:{
+            type:Number
+        },
+        unit:{
+            type:String
+        },
     
 
 },{timestamps:true})
