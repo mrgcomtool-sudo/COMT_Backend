@@ -50,9 +50,9 @@ const getMemberById = async (req, res) => {
 const updateMember = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, email, dateOfBirth,phone,role,skills,address,maritalStatus} = req.body;
+    const { name, personalEmail, dateOfBirth,phone,role,skills,address,maritalStatus} = req.body;
 
-    const updatedMember = await Member.findByIdAndUpdate(id,{  name, email, dateOfBirth,phone,role,skills,address,maritalStatus} ,
+    const updatedMember = await Member.findByIdAndUpdate(id,{  name, personalEmail, dateOfBirth,phone,role,skills,address,maritalStatus} ,
       { new: true, // returns updated document
         runValidators: true, // applies schema validations
       });
@@ -138,92 +138,5 @@ const addMember2 = async(req,res)=>{
         }
     }
 
-// ✅ Add Member (sync with Google Sheet)
-const addMember = async (req, res) => {
-  try {
-    const secret = req.headers["x-webhook-secret"];
-    if (secret !== process.env.WEBHOOK_SECRET) {
-      return res.status(403).json({ message: "Unauthorized request" });
-    }
 
-    // 🔹 Expecting the same fields as your Google Sheet's Appscript
-    const {
-      memberReferenceNumber,
-      timestamp,
-      emailAddress,
-      name,
-      fathersName,
-      pointOfContact,
-      mobileNumber,
-      dateOfBirth,
-      collegeName,
-      department,
-      workingOrStudyingStatus,
-      currentInstitutionOrCompany,
-      profession,
-      maritalStatus,
-      otherPersonalNumber,
-      personalEmail,
-      photoUrl,
-      areaOfInterest,
-      ambition,
-      expectationsFromSolidarity,
-      currentAddress,
-      currentDistrict,
-      nativePlace,
-      resume,
-      age,
-      memberId,
-      memberType
-    } = req.body;
-
-    if (!emailAddress) {
-      return res.status(400).json({ message: "Email is required" });
-    }
-
-      // ➕ Insert new member 
-      const member = await Member.create({
-        memberReferenceNumber,
-        timestamp,
-        emailAddress,
-        name,
-        fathersName,
-        pointOfContact,
-        mobileNumber,
-        dateOfBirth,
-        collegeName,
-        department,
-        workingOrStudyingStatus,
-        currentInstitutionOrCompany,
-        profession,
-        maritalStatus,
-        otherPersonalNumber,
-        personalEmail,
-        photoUrl,
-        areaOfInterest,
-        ambition,
-        expectationsFromSolidarity,
-        currentAddress,
-        currentDistrict,
-        nativePlace,
-        resume,
-        age,
-        memberId,
-        memberType
-      });
-    
-        await Activity.create({
-            type: 'MEMBER',
-            action: 'joined',
-            meta: {
-              name,
-            },
-            targetId: member._id,
-        })
-    res.json({ message: "✅ Member synced successfully", member });
-  } catch (err) {
-    console.error("❌ Sync Error:", err);
-    res.status(500).json({ error: err.message });
-  }
-};
-module.exports={getAllMembers,getMemberById,updateMember,deleteMember,addMember,addMember2,addMember3}
+module.exports={getAllMembers,getMemberById,updateMember,deleteMember,addMember2,addMember3}

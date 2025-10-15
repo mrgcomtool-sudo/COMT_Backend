@@ -15,11 +15,6 @@ const expenseSchema = mongoose.Schema({
             ref: "Phase",
             required: true
         },
-        taskId:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"Task",
-            required:true
-        },
          name:{
             type:String,
             required:true
