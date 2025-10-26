@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
    app.use("/member",require("./routes/member"));      
    app.use("/client",require("./routes/client"));

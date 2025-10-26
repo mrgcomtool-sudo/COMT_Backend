@@ -11,11 +11,11 @@ const incomeSchema = mongoose.Schema({
             required:true
         },
        
-        // phaseId:{
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     ref: "Phase",
-          
-        // },
+        phaseId:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Phase",
+    
+        },
         name:{
             type:String,
             required:true

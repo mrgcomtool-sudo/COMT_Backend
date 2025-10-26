@@ -19,9 +19,9 @@ const generateCustomId = async () => {
 // ✅ Create Income
 const createIncome = async (req, res) => {
   try {
-    const { projectId,name,description,amount,paymentDate,paymentMethod,transactionNo } = req.body;
+    const { projectId,phaseId,name,description,amount,paymentDate,paymentMethod,transactionNo } = req.body;
     const customId = await generateCustomId();
-    const newIncome = new Income({ customId,projectId,name,description,amount,paymentDate,paymentMethod,transactionNo });
+    const newIncome = new Income({ customId,projectId,phaseId,name,description,amount,paymentDate,paymentMethod,transactionNo });
 
     const savedIncome = await newIncome.save();
     const project = await Project.findById(projectId);
@@ -53,7 +53,7 @@ const getAllIncomes = async (req, res) => {
     const incomes = await Income.find()
       //.populate({path:"phaseId",select:"title projectId ",populate:{ path: 'projectId', select:'title'}})
       .populate("projectId","name")
-      // .populate("phaseId","name")
+      .populate("phaseId","name")
       
       
     res.status(200).json({ success: true, data: incomes });
